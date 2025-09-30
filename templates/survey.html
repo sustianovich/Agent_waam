@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Encuesta: Criterios de Fabricación Aditiva</title>
+  <style>
+    :root {
+      --primary-color: #1a73e8;
+      --bg-color: #f1f3f4;
+      --text-dark: #202124;
+      --text-light: #5f6368;
+      --card-bg: #fff;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--bg-color);
+      margin: 0;
+      padding: 40px 20px;
+    }
+
+    #survey-header {
+      max-width: 800px;
+      margin: 0 auto 30px auto;
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    #survey-header h1 {
+      font-size: 26px;
+      margin-bottom: 10px;
+      color: var(--primary-color);
+    }
+
+    #survey-header p {
+      font-size: 16px;
+      color: var(--text-light);
+      margin: 0;
+    }
+
+    .form-section {
+      background: var(--card-bg);
+      border-left: 6px solid var(--primary-color);
+      border-radius: 10px;
+      padding: 30px;
+      margin: 20px auto;
+      max-width: 800px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .form-section h2 {
+      font-size: 18px;
+      color: var(--text-dark);
+      margin-bottom: 5px;
+    }
+
+    .form-section .subtitle {
+      font-size: 14px;
+      color: var(--text-light);
+      margin-bottom: 20px;
+    }
+
+    .question {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .question p {
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: var(--text-dark);
+    }
+
+    .question .instructions {
+      font-size: 14px;
+      color: var(--text-light);
+      margin-bottom: 10px;
+    }
+
+    .likert {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+
+    .likert-label {
+      width: 120px;
+      font-size: 13px;
+      text-align: center;
+      color: var(--text-light);
+    }
+
+    .likert-options {
+      flex-grow: 1;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .likert-options label {
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-light);
+    }
+
+    input[type="radio"] {
+      margin: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="survey-header"></div>
+  <div id="survey-container"></div>
+
+  <!-- Embedded JSON -->
+  <script type="application/json" id="survey-data">
+    {
+        "title": "Importance of Criteria in Selecting an Additive Manufacturing Technology",
+        "description": "Survey designed for experts to determine the importance of different factors in the selection of additive manufacturing technology for metal parts.",
+        "sections": [
+            {
+                "section": 1,
+                "title": "General Criteria",
+                "main_question": "When selecting an additive manufacturing technology for metal parts, which of this two factors is the most important?",
+                "instructions": "From 1 to 9, where 1 means the Printing Stage is completely critical and 9 means the Final Stage is completely critical, defining:<br><br>- Printing Stage as the stage where factors such as machine cost, manufacturing cost, productivity, process control and reliability, and part finishing play a role.<br>- Final Stage as the stage where factors such as final part properties, post-processing complexity, and process sustainability are involved.",
+                "comparisons": [
+                    {"factor_1": "Printing Stage", "factor_2": "Final Stage"}
+                ]
+            },
+            {
+                "section": 2,
+                "title": "Criteria in the Printing Stage",
+                "main_question": "When selecting an additive manufacturing technology for metal parts, which of the following factors is the most important?",
+                "instructions": "Machine Price: Cost of acquiring the necessary machinery for manufacturing parts in the technology. <br> Manufacturing Cost: Costs associated with the fabrication of the raw printed part (considering: material costs, labor (human resources), and other indirect costs such as electricity, rent, etc.). <br> Productivity: Considering productivity as printed material per hour. <br> Reliability: The ability to manufacture additive parts without defects or process inactivity failures. <br> Surface Finish After Printing: The level of surface finish (greater waviness means more roughness) that parts exhibit after completing the raw printed part. <br> ",
+                "comparisons": [
+                    {"factor_1": "Machine Price", "factor_2": "Manufacturing Cost"},
+                    {"factor_1": "Machine Price", "factor_2": "Productivity"},
+                    {"factor_1": "Machine Price", "factor_2": "Reliability"},
+                    {"factor_1": "Machine Price", "factor_2": "Surface Finish After Printing"},
+                    {"factor_1": "Manufacturing Cost", "factor_2": "Productivity"},
+                    {"factor_1": "Manufacturing Cost", "factor_2": "Reliability"},
+                    {"factor_1": "Manufacturing Cost", "factor_2": "Surface Finish After Printing"},
+                    {"factor_1": "Productivity", "factor_2": "Reliability"},
+                    {"factor_1": "Productivity", "factor_2": "Surface Finish After Printing"},
+                    {"factor_1": "Reliability", "factor_2": "Surface Finish After Printing"}
+                ]
+            },
+            {
+                "section": 3,
+                "title": "Criteria in the Final Stage",
+                "main_question": "When selecting an additive manufacturing technology for metal parts, which of the following factors is the most important?",
+                "instructions": "Final Part Properties: Mechanical properties of the part manufactured using additive technology (mechanical strength, microstructural integrity, fatigue resistance, etc.). <br> Post Processing Complexity: Estimation of the number, complexity, and cost of Post Processing operations required to complete the target part fabrication. <br> Process Sustainability: Ecological impact of the process considering consumption, recycling, and the efficiency of the material used. <br> User Preferences: Personal considerations including aspects such as ease of use of the equipment (both hardware and CNC), integration of sensors, and software tools (design, planning, cost, CAD/CAM/CAE, etc.). <br>",
+                "comparisons": [
+                    {"factor_1": "Final Mechanical Properties", "factor_2": "Post Processing Complexity"},
+                    {"factor_1": "Final Mechanical Properties", "factor_2": "Process Sustainability"},
+                    {"factor_1": "Final Mechanical Properties", "factor_2": "User Preferences"},
+                    {"factor_1": "Post Processing Complexity", "factor_2": "Process Sustainability"},
+                    {"factor_1": "Post Processing Complexity", "factor_2": "User Preferences"},
+                    {"factor_1": "Process Sustainability", "factor_2": "User Preferences"}
+                ]
+            },
+            {
+                "section": 4,
+                "title": "Surface Finish",
+                "main_question": "Regarding surface finish after printing, which of the following technologies do you consider more suitable?",
+                "instructions": "Defining Reliability as: The ability to manufacture additive parts without defects or process inactivity failures. <br> Understanding Additive Manufacturing Technologies:<br> PBF (Powder Bed Fusion): Uses a powder bed and selectively fuses material with a heat source.<br> ME (Material Extrusion): Uses a nozzle to extrude material, similar to FDM.<br> DED (Direct Energy Deposition): Adds material with an energy source for melting.<br><br> DED Technologies:<br> - LMD (Laser Metal Deposition): Uses a laser to deposit and melt metal.<br> - EBAM (Electron Beam Additive Manufacturing): Uses an electron beam for metal deposition.<br> - WAAM (Wire Arc Additive Manufacturing): Uses an electric arc with wire to deposit material.<br><br> Select the technology that provides the best surface finish after printing.",
+                "comparisons": [
+                    {"factor_1": "PBF", "factor_2": "DED (LMD)"},
+                    {"factor_1": "PBF", "factor_2": "DED (EBAM)"},
+                    {"factor_1": "PBF", "factor_2": "DED (WAAM)"},
+                    {"factor_1": "PBF", "factor_2": "ME"},
+                    {"factor_1": "DED (LMD)", "factor_2": "DED (EBAM)"},
+                    {"factor_1": "DED (LMD)", "factor_2": "DED (WAAM)"},
+                    {"factor_1": "DED (LMD)", "factor_2": "ME"},
+                    {"factor_1": "DED (EBAM)", "factor_2": "DED (WAAM)"},
+                    {"factor_1": "DED (EBAM)", "factor_2": "ME"},
+                    {"factor_1": "DED (WAAM)", "factor_2": "ME"}
+                ]
+            },
+            {
+                "section": 5,
+                "title": "Time versus Cost of Post Processing",
+                "main_question": "Which technology has more complex and time-consuming Post Processing requirements?",
+                "instructions": "Defining Post Processing Complexity as: The additional steps needed after printing to make a part functional, including heat treatment, machining, and surface smoothing. More complex Post Processing increases manufacturing time and costs.<br> Understanding Additive Manufacturing Technologies:<br> PBF (Powder Bed Fusion): Uses a powder bed and selectively fuses material with a heat source.<br> ME (Material Extrusion): Uses a nozzle to extrude material, similar to FDM.<br> DED (Direct Energy Deposition): Adds material with an energy source for melting.<br><br> DED Technologies:<br> - LMD (Laser Metal Deposition): Uses a laser to deposit and melt metal.<br> - EBAM (Electron Beam Additive Manufacturing): Uses an electron beam for metal deposition.<br> - WAAM (Wire Arc Additive Manufacturing): Uses an electric arc with wire to deposit material.<br><br> Select the technology that provides the best surface finish after printing.",
+                "comparisons": [
+                    {"factor_1": "PBF", "factor_2": "DED (LMD)"},
+                    {"factor_1": "PBF", "factor_2": "DED (EBAM)"},
+                    {"factor_1": "PBF", "factor_2": "DED (WAAM)"},
+                    {"factor_1": "PBF", "factor_2": "ME"},
+                    {"factor_1": "DED (LMD)", "factor_2": "DED (EBAM)"},
+                    {"factor_1": "DED (LMD)", "factor_2": "DED (WAAM)"},
+                    {"factor_1": "DED (LMD)", "factor_2": "ME"},
+                    {"factor_1": "DED (EBAM)", "factor_2": "DED (WAAM)"},
+                    {"factor_1": "DED (EBAM)", "factor_2": "ME"},
+                    {"factor_1": "DED (WAAM)", "factor_2": "ME"}
+                ]
+            },
+            {
+                "section": 6,
+                "title": "Criteria versus Alternatives",
+                "main_question": "Considering USER PREFERENCES, which of the following technologies seems more suitable to you?",
+                "instructions": "Defining User Preferences as: Personal considerations including aspects such as ease of use of the equipment (both hardware and CNC), integration of sensors, and software tools (design, planning, cost, CAD/CAM/CAE, etc.).<br> Understanding Additive Manufacturing Technologies:<br> PBF (Powder Bed Fusion): Uses a powder bed and selectively fuses material with a heat source.<br> ME (Material Extrusion): Uses a nozzle to extrude material, similar to FDM.<br> DED (Direct Energy Deposition): Adds material with an energy source for melting.<br><br> DED Technologies:<br> - LMD (Laser Metal Deposition): Uses a laser to deposit and melt metal.<br> - EBAM (Electron Beam Additive Manufacturing): Uses an electron beam for metal deposition.<br> - WAAM (Wire Arc Additive Manufacturing): Uses an electric arc with wire to deposit material.<br><br> Select the technology that provides the best surface finish after printing.",
+                "comparisons": [
+                    {"factor_1": "PBF", "factor_2": "DED (LMD)"},
+                    {"factor_1": "PBF", "factor_2": "DED (EBAM)"},
+                    {"factor_1": "PBF", "factor_2": "DED (WAAM)"},
+                    {"factor_1": "PBF", "factor_2": "ME"},
+                    {"factor_1": "DED (LMD)", "factor_2": "DED (EBAM)"},
+                    {"factor_1": "DED (LMD)", "factor_2": "DED (WAAM)"},
+                    {"factor_1": "DED (LMD)", "factor_2": "ME"},
+                    {"factor_1": "DED (EBAM)", "factor_2": "DED (WAAM)"},
+                    {"factor_1": "DED (EBAM)","factor_2": "ME"},
+                    {"factor_1": "DED (WAAM)", "factor_2": "ME"}
+                ]
+              }
+        ]
+    }
+    
+    
+  </script>
+
+  <!-- JS Renderer -->
+  <script>
+    const survey = JSON.parse(document.getElementById('survey-data').textContent);
+    const header = document.getElementById('survey-header');
+    const container = document.getElementById('survey-container');
+
+    // Header
+    const h1 = document.createElement('h1');
+    h1.textContent = survey.title;
+    header.appendChild(h1);
+
+    const desc = document.createElement('p');
+    desc.textContent = survey.description;
+    header.appendChild(desc);
+
+    // Sections
+    survey.sections.forEach((section, index) => {
+      const sectionDiv = document.createElement('div');
+      sectionDiv.className = 'form-section';
+
+      const title = document.createElement('h2');
+      title.textContent = `Sección ${section.section} de 9`;
+      sectionDiv.appendChild(title);
+
+      const subtitle = document.createElement('div');
+      subtitle.className = 'subtitle';
+      subtitle.textContent = section.title;
+      sectionDiv.appendChild(subtitle);
+
+      const question = document.createElement('div');
+      question.className = 'question';
+
+      const qText = document.createElement('p');
+      qText.innerHTML = section.main_question;
+      question.appendChild(qText);
+
+      const instructions = document.createElement('div');
+      instructions.className = 'instructions';
+      instructions.innerHTML = section.instructions;
+      question.appendChild(instructions);
+
+      sectionDiv.appendChild(question);
+
+      section.comparisons.forEach((comp, idx) => {
+        const likert = document.createElement('div');
+        likert.className = 'likert';
+
+        const leftLabel = document.createElement('div');
+        leftLabel.className = 'likert-label';
+        leftLabel.textContent = comp.factor_1;
+        likert.appendChild(leftLabel);
+
+        const options = document.createElement('div');
+        options.className = 'likert-options';
+
+        for (let i = 1; i <= 9; i++) {
+          const wrapper = document.createElement('div');
+          const input = document.createElement('input');
+          input.type = 'radio';
+          input.name = `sec${index}_comp${idx}`;
+          input.value = i;
+          input.id = `sec${index}_comp${idx}_val${i}`;
+
+          const label = document.createElement('label');
+          label.htmlFor = input.id;
+          label.textContent = i;
+
+          wrapper.appendChild(input);
+          wrapper.appendChild(label);
+          options.appendChild(wrapper);
+        }
+
+        likert.appendChild(options);
+
+        const rightLabel = document.createElement('div');
+        rightLabel.className = 'likert-label';
+        rightLabel.textContent = comp.factor_2;
+        likert.appendChild(rightLabel);
+
+        sectionDiv.appendChild(likert);
+      });
+
+      container.appendChild(sectionDiv);
+    });
+  </script>
+
+</body>
+</html>

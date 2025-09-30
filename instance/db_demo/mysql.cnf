@@ -1,0 +1,9 @@
+[mysqld]
+port=3306
+basedir="C:/Users/User/AppData/Local/com.tinyapp.DBngin/Binaries/mysql/8.4.2"
+datadir="C:/Users/User/Documents/upna/doctorado/llm_agent_waam/250509_agent_waam/instance/db_demo"
+plugin-dir="C:/Users/User/AppData/Local/com.tinyapp.DBngin/Binaries/mysql/8.4.2/lib/plugin"
+log-error="C:/Users/User/Documents/upna/doctorado/llm_agent_waam/250509_agent_waam/instance/db_demo/mysqld.local.err"
+pid-file="C:/Users/User/Documents/upna/doctorado/llm_agent_waam/250509_agent_waam/instance/db_demo/mysql.pid"
+skip-log-bin
+!include C:/Users/User/Documents/upna/doctorado/llm_agent_waam/250509_agent_waam/instance/survey_dbs/WAAM_Expert_llama3_Run1_memory_on_20250515_102048.db

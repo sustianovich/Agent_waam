@@ -1,0 +1,139 @@
+{
+    "title": "Importance of Criteria in Selecting an Additive Manufacturing Technology",
+    "description": "Survey designed for experts to determine the importance of different factors in the selection of additive manufacturing technology for metal parts.",
+    "sections": [
+        {
+            "section": 2,
+            "title": "General Criteria",
+            "main_question": "When selecting an additive manufacturing technology for metal parts, which of this two factors is the most important?",
+            "instructions": "From 1 to 9, where 1 means the Printing Stage is completely critical and 9 means the Final Stage is completely critical, defining:<br><br>- Printing Stage as the stage where factors such as machine cost, manufacturing cost, productivity, process control and reliability, and part finishing play a role.<br>- Final Stage as the stage where factors such as final part properties, post-processing complexity, and process sustainability are involved.",
+            "comparisons": [
+                {"factor_1": "Printing Stage", "factor_2": "Final Stage"}
+            ]
+        },
+        {
+            "section": 3,
+            "title": "Criteria in the Printing Stage",
+            "main_question": "When selecting an additive manufacturing technology for metal parts, which of the following factors is the most important?",
+            "instructions": "Machine Price: Cost of acquiring the necessary machinery for manufacturing parts in the technology. <br> Manufacturing Cost: Costs associated with the fabrication of the raw printed part (considering: material costs, labor (human resources), and other indirect costs such as electricity, rent, etc.). <br> Productivity: Considering productivity as printed material per hour. <br> Reliability: The ability to manufacture additive parts without defects or process inactivity failures. <br> Surface Finish After Printing: The level of surface finish (greater waviness means more roughness) that parts exhibit after completing the raw printed part. <br> ",
+            "comparisons": [
+                {"factor_1": "Machine Price", "factor_2": "Manufacturing Cost"},
+                {"factor_1": "Machine Price", "factor_2": "Productivity"},
+                {"factor_1": "Machine Price", "factor_2": "Reliability"},
+                {"factor_1": "Machine Price", "factor_2": "Surface Finish After Printing"},
+                {"factor_1": "Manufacturing Cost", "factor_2": "Productivity"},
+                {"factor_1": "Manufacturing Cost", "factor_2": "Reliability"},
+                {"factor_1": "Manufacturing Cost", "factor_2": "Surface Finish After Printing"},
+                {"factor_1": "Productivity", "factor_2": "Reliability"},
+                {"factor_1": "Productivity", "factor_2": "Surface Finish After Printing"},
+                {"factor_1": "Reliability", "factor_2": "Surface Finish After Printing"}
+            ]
+        },
+        {
+            "section": 4,
+            "title": "Criteria in the Final Stage",
+            "main_question": "When selecting an additive manufacturing technology for metal parts, what is more important to you?",
+            "instructions": "Final Part Properties: Mechanical properties of the part manufactured using additive technology (mechanical strength, microstructural integrity, fatigue resistance, etc.). <br> Post Processing Complexity: Estimation of the number, complexity, and cost of Post Processing operations required to complete the target part fabrication. <br> Process Sustainability: Ecological impact of the process considering consumption, recycling, and the efficiency of the material used. <br> User Preferences: Personal considerations including aspects such as ease of use of the equipment (both hardware and CNC), integration of sensors, and software tools (design, planning, cost, CAD/CAM/CAE, etc.). <br>",
+            "comparisons": [
+                {"factor_1": "Final Mechanical Properties", "factor_2": "Post Processing Complexity"},
+                {"factor_1": "Final Mechanical Properties", "factor_2": "Process Sustainability"},
+                {"factor_1": "Final Mechanical Properties", "factor_2": "User Preferences"},
+                {"factor_1": "Post Processing Complexity", "factor_2": "Process Sustainability"},
+                {"factor_1": "Post Processing Complexity", "factor_2": "User Preferences"},
+                {"factor_1": "Process Sustainability", "factor_2": "User Preferences"}
+            ]
+        },
+        {
+            "section": 5,
+            "title": "Criteria versus Alternatives",
+            "main_question": "Considering RELIABILITY, which of the following technologies do you consider more suitable? Where 1 means totally favorable to the first technology, and 9 means totally favorable to the second one.Regarding surface finish after printing, which of the following technologies do you consider more suitable?",
+            "instructions": "Defining Reliability as: The ability to manufacture additive parts without the occurrence of defects or downtime associated with failures.",
+            "comparisons": [
+                {"factor_1": "PBF", "factor_2": "DED (LMD)"},
+                {"factor_1": "PBF", "factor_2": "DED (EBAM)"},
+                {"factor_1": "PBF", "factor_2": "DED (WAAM)"},
+                {"factor_1": "PBF", "factor_2": "ME"},
+                {"factor_1": "DED (LMD)", "factor_2": "DED (EBAM)"},
+                {"factor_1": "DED (LMD)", "factor_2": "DED (WAAM)"},
+                {"factor_1": "DED (LMD)", "factor_2": "ME"},
+                {"factor_1": "DED (EBAM)", "factor_2": "DED (WAAM)"},
+                {"factor_1": "DED (EBAM)", "factor_2": "ME"},
+                {"factor_1": "DED (WAAM)", "factor_2": "ME"}
+            ]
+        },
+        {
+            "section": 6,
+            "title": "Criteria versus Alternatives",
+            "main_question": "Considering the SURFACE FINISH after printing, which of the following technologies do you consider most suitable?",
+            "instructions": "Defining Surface Finish after printing as: The degree of finish (waviness plus roughness) that parts exhibit after the completion of the raw printed piece. Where 1 means totally favorable to the first technology, and 9 means totally favorable to the second one. PBF (Powder Bed Fusion) – It melts metal powder using a laser inside a powder bed. ME (Material Extrusion) – It pushes material through a nozzle, similar to plastic 3D printers. DED (Direct Energy Deposition) – It adds metal while heating it at the same time. DED has three versions: LMD: Laser-based deposition, EBAM: Electron beam-based deposition, WAAM: Electric arc with wire-based deposition." ,
+            "comparisons": [
+                {"factor_1": "PBF", "factor_2": "DED (LMD)"},
+                {"factor_1": "PBF", "factor_2": "DED (EBAM)"},
+                {"factor_1": "PBF", "factor_2": "DED (WAAM)"},
+                {"factor_1": "PBF", "factor_2": "ME"},
+                {"factor_1": "DED (LMD)", "factor_2": "DED (EBAM)"},
+                {"factor_1": "DED (LMD)", "factor_2": "DED (WAAM)"},
+                {"factor_1": "DED (LMD)", "factor_2": "ME"},
+                {"factor_1": "DED (EBAM)", "factor_2": "DED (WAAM)"},
+                {"factor_1": "DED (EBAM)", "factor_2": "ME"},
+                {"factor_1": "DED (WAAM)", "factor_2": "ME"}
+            ]
+        },
+        {
+            "section": 7,
+            "title": "Criteria versus Alternatives",
+            "description": "Considering the COMPLEXITY OF POST-PROCESSING, which of the following technologies do you consider most suitable?",
+            "instructions": "Defining Post-Processing Complexity as: The estimated number, complexity, and cost of the post-processing operations required to complete the fabrication of the target part. Where 1 means totally favorable to the first technology, and 9 means totally favorable to the second one. PBF (Powder Bed Fusion) – It melts metal powder using a laser inside a powder bed. ME (Material Extrusion) – It pushes material through a nozzle, similar to plastic 3D printers. DED (Direct Energy Deposition) – It adds metal while heating it at the same time. DED has three versions: LMD: Laser-based deposition, EBAM: Electron beam-based deposition, WAAM: Electric arc with wire-based deposition.",
+            "comparisons": [
+                {"factor_1": "PBF", "factor_2": "DED (LMD)"},
+                {"factor_1": "PBF", "factor_2": "DED (EBAM)"},
+                {"factor_1": "PBF", "factor_2": "DED (WAAM)"},
+                {"factor_1": "PBF", "factor_2": "ME"},
+                {"factor_1": "DED (LMD)", "factor_2": "DED (EBAM)"},
+                {"factor_1": "DED (LMD)", "factor_2": "DED (WAAM)"},
+                {"factor_1": "DED (LMD)", "factor_2": "ME"},
+                {"factor_1": "DED (EBAM)", "factor_2": "DED (WAAM)"},
+                {"factor_1": "DED (EBAM)", "factor_2": "ME"},
+                {"factor_1": "DED (WAAM)", "factor_2": "ME"}
+                ]
+          },
+          {
+            "section": 8,
+            "title": "Criteria versus Alternatives",
+            "description": "Considering the SUSTAINABILITY OF THE PROCESS, which of the following technologies do you consider most suitable?",
+            "instructions": "Defining Process Sustainability as: The ecological impact of the process, taking into account consumption, recycling, and the efficiency of the material used. Where 1 means totally favorable to the first technology, and 9 means totally favorable to the second one. PBF (Powder Bed Fusion) – It melts metal powder using a laser inside a powder bed. ME (Material Extrusion) – It pushes material through a nozzle, similar to plastic 3D printers. DED (Direct Energy Deposition) – It adds metal while heating it at the same time. DED has three versions: LMD: Laser-based deposition, EBAM: Electron beam-based deposition, WAAM: Electric arc with wire-based deposition.",
+            "comparisons": [
+                {"factor_1": "PBF", "factor_2": "DED (LMD)"},
+                {"factor_1": "PBF", "factor_2": "DED (EBAM)"},
+                {"factor_1": "PBF", "factor_2": "DED (WAAM)"},
+                {"factor_1": "PBF", "factor_2": "ME"},
+                {"factor_1": "DED (LMD)", "factor_2": "DED (EBAM)"},
+                {"factor_1": "DED (LMD)", "factor_2": "DED (WAAM)"},
+                {"factor_1": "DED (LMD)", "factor_2": "ME"},
+                {"factor_1": "DED (EBAM)", "factor_2": "DED (WAAM)"},
+                {"factor_1": "DED (EBAM)", "factor_2": "ME"},
+                {"factor_1": "DED (WAAM)", "factor_2": "ME"}
+                ]
+
+          },
+          {
+            "section": 9,
+            "title": "Criteria versus Alternatives",
+            "description": "Considering USER PREFERENCES, which of the following technologies do you consider most suitable?",
+            "instructions": "Defining User Preferences as: Personal considerations including aspects such as ease of use of the equipment (both hardware and CNC), integration of sensors, and software tools (design, planning, cost, CAD/CAM/CAE, etc.). Where 1 means totally favorable to the first technology, and 9 means totally favorable to the second one. PBF (Powder Bed Fusion) – It melts metal powder using a laser inside a powder bed. ME (Material Extrusion) – It pushes material through a nozzle, similar to plastic 3D printers. DED (Direct Energy Deposition) – It adds metal while heating it at the same time. DED has three versions: LMD: Laser-based deposition, EBAM: Electron beam-based deposition, WAAM: Electric arc with wire-based deposition.",
+            "comparisons": [
+                {"factor_1": "PBF", "factor_2": "DED (LMD)"},
+                {"factor_1": "PBF", "factor_2": "DED (EBAM)"},
+                {"factor_1": "PBF", "factor_2": "DED (WAAM)"},
+                {"factor_1": "PBF", "factor_2": "ME"},
+                {"factor_1": "DED (LMD)", "factor_2": "DED (EBAM)"},
+                {"factor_1": "DED (LMD)", "factor_2": "DED (WAAM)"},
+                {"factor_1": "DED (LMD)", "factor_2": "ME"},
+                {"factor_1": "DED (EBAM)", "factor_2": "DED (WAAM)"},
+                {"factor_1": "DED (EBAM)", "factor_2": "ME"},
+                {"factor_1": "DED (WAAM)", "factor_2": "ME"}
+                ]
+
+          }
+    ]
+}

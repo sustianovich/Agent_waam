@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI Jarraitu Survey Generator + AHP Analysis</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet"/>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"/>
+
+  <style>
+    /* darkmode.css */
+    
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #121212;
+  color: #f1f1f1;
+}
+
+.survey-container {
+  background-color: #1e1e1e;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.05);
+}
+
+.card {
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+  color: #e0e0e0;
+}
+
+.card-header {
+  background-color: #333;
+  color: #ffffff;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border-color: #0056b3;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border-color: #1e7e34;
+}
+
+.btn-success:hover {
+  background-color: #1e7e34;
+}
+
+.form-control,
+.form-select {
+  background-color: #2c2c2c;
+  color: #f1f1f1;
+  border: 1px solid #555;
+}
+
+.form-control::placeholder {
+  color: #999;
+}
+
+.progress-container {
+  background-color: #333;
+  border-radius: 5px;
+  margin-top: 15px;
+  height: 10px;
+}
+
+.progress-bar {
+  background-color: #4caf50;
+  transition: width 0.5s ease-in-out;
+}
+
+.response-box,
+.ahp-summary {
+  background-color: #2e2e2e;
+  color: #f1f1f1;
+  padding: 10px;
+  margin-top: 15px;
+  border-radius: 5px;
+}
+
+#consistencyIndex,
+#consistencyRatio {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+/* Light Mode Defaults */
+body.light {
+  background-color: #f8f9fa;
+  color: #212529;
+}
+
+body.light .survey-container {
+  background-color: #ffffff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+body.light .card {
+  background-color: #ffffff;
+  color: #212529;
+  border: 1px solid #dee2e6;
+}
+
+body.light .card-header {
+  background-color: #e9ecef;
+  color: #212529;
+}
+
+body.light .form-control,
+body.light .form-select {
+  background-color: #ffffff;
+  color: #212529;
+  border: 1px solid #ced4da;
+}
+
+body.light .response-box,
+body.light .ahp-summary {
+  background-color: #f1f1f1;
+  color: #212529;
+}
+
+body.light .progress-container {
+  background-color: #e9ecef;
+}
+
+body.light #consistencyIndex,
+body.light #consistencyRatio {
+  color: #212529;
+}
+
+
+  </style>
+</head>
+<body>
+
+  <div class="survey-container container">
+    <h1 class="text-center mb-4">AI Jarraitu Survey Generator</h1>
+
+    <div class="text-end mb-2">
+      <button id="themeToggle" class="btn btn-secondary btn-sm">Toggle Mode</button>
+    </div>
+    
+  
+    <!-- Controls -->
+    <div class="row g-3 mb-4">
+      <div class="col-md-4">
+        <label><strong>Select Agent:</strong></label>
+        <select id="agent" class="form-select">
+          {% for agent in agents %}
+          <option value="{{ agent }}" {% if agent == "WAAM Expert" %}selected{% endif %}>{{ agent }}</option>
+          {% endfor %}
+        </select>
+        <div class="form-check form-switch mb-3">
+          <input class="form-check-input" type="checkbox" id="toggleMemory" checked>
+          <label class="form-check-label" for="toggleMemory">Enable Agent Memory</label>
+        </div>
+        
+      </div>
+      <div class="col-md-3">
+        <label><strong>Number of Runs:</strong></label>
+        <input type="number" id="num_runs" class="form-control" min="1" value="1" />
+      </div>
+      <div class="col-md-5 d-flex flex-column align-items-stretch">
+        <!-- Start Button -->
+        <button class="btn btn-primary w-100 mb-2" onclick="startSurvey()">Start Survey</button>
+      
+        <!-- Reset Button (Matching style) -->
+        <button class="btn btn-primary w-100" onclick="resetSurvey()">🔄 Reset / Start Over</button>
+      </div>
+      
+    </div>
+  
+    <!-- Progress -->
+    <div class="progress-container mb-3">
+      <div class="progress-bar" id="progress-bar"></div>
+    </div>
+  
+    <!-- Two Column Layout -->
+    <div class="row">
+      <!-- Agent Responses -->
+      <div class="col-md-6">
+        <div class="card h-100">
+          <div class="card-header bg-primary text-white"><strong>🧠 Agent Responses</strong></div>
+          <div class="card-body overflow-auto" style="max-height: 500px;">
+            <div id="response-list"></div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- AHP Analysis -->
+      <div class="col-md-6">
+        <div class="card h-100">
+          <div class="card-header bg-success text-white"><strong>📊 AHP Analysis</strong></div>
+          <div class="card-body">
+            <label>Analysis Mode:</label>
+            <select id="mode" class="form-select mb-2">
+              <option value="single">Single Survey</option>
+              <option value="agent">All Surveys by Agent</option>
+              <option value="all">All Surveys (All Agents)</option>
+            </select>
+  
+            <div id="surveyFileInput" class="mb-2">
+              <label>Survey File (.db):</label>
+              <input type="text" id="survey_file" class="form-control" placeholder="e.g., survey_01.db" />
+            </div>
+  
+            <div id="agentSelector" class="mb-3 hidden">
+              <label>Select Agent:</label>
+              <select id="agent_mode" class="form-select">
+                {% for agent in agents %}
+                <option value="{{ agent }}">{{ agent }}</option>
+                {% endfor %}
+              </select>
+            </div>
+  
+            <button id="runAnalysis" class="btn btn-success w-100 mb-3">Run AHP Analysis</button>
+  
+            <div id="ahpSummary" class="ahp-summary hidden">
+              <strong>Consistency Index:</strong> <span id="consistencyIndex"></span><br />
+              <strong>Consistency Ratio:</strong> <span id="consistencyRatio"></span>
+            </div>
+  
+            <img id="ahpGraph" class="img-fluid mt-3" style="display: none;" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+<script>
+  let totalRuns = 1;
+  let currentRun = 1;
+  let isRunning = false;
+  let agent = "";
+
+  function startSurvey() {
+    agent = document.getElementById("agent").value;
+    totalRuns = parseInt(document.getElementById("num_runs").value) || 1;
+    currentRun = 1;
+    isRunning = true;
+    const memoryEnabled = document.getElementById("toggleMemory").checked;
+
+    fetch(`/get_next_question?agent=${agent}&num_runs=${totalRuns}&memory=${memoryEnabled}`)
+
+
+    document.getElementById("response-list").innerHTML = "";
+    getNextQuestion();
+  }
+
+  function resetSurvey() {
+    // Stop any ongoing run
+    isRunning = false;
+
+    // Reset variables
+    currentRun = 1;
+    totalRuns = 1;
+
+    // Clear progress
+    document.getElementById("progress-bar").style.width = "0%";
+
+    // Clear agent responses
+    document.getElementById("response-list").innerHTML = "";
+
+    // Reset agent dropdown (optional)
+    document.getElementById("agent").selectedIndex = 0;
+
+    // Reset number of runs input
+    document.getElementById("num_runs").value = 1;
+
+    // Reset AHP panel
+    document.getElementById("ahpGraph").style.display = "none";
+    document.getElementById("ahpSummary").classList.add("hidden");
+    document.getElementById("consistencyIndex").textContent = "";
+    document.getElementById("consistencyRatio").textContent = "";
+
+    // Optional: Reset filename field
+    const fileInput = document.getElementById("survey_file");
+    if (fileInput) fileInput.value = "";
+
+    // Clear session on backend (optional)
+    fetch("/", { method: "GET" });  // This will reload the base page + clear session on Flask
+  }
+
+  function getNextQuestion() {
+    if (!isRunning) return;
+
+    fetch(`/get_next_question?agent=${agent}&num_runs=${totalRuns}`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.completed) {
+          alert(`✅ Survey completed with ${totalRuns} run(s).`);
+          isRunning = false;
+          return;
+        }
+
+        displayResponse(data);
+        updateProgress(data);
+
+        setTimeout(getNextQuestion, 500);
+      })
+      .catch(error => {
+        console.error("Fetch error:", error);
+        alert("Something went wrong.");
+        isRunning = false;
+      });
+  }
+
+  function updateProgress(data) {
+    let percent = (data.question_index / data.total_questions) * 100;
+    document.getElementById("progress-bar").style.width = percent + "%";
+  }
+
+  function displayResponse(data) {
+    const responseList = document.getElementById("response-list");
+
+    let responseHTML = `
+      <div class="response-box">
+        <strong>Run ${data.run_number} – Question ${data.question_index}/${data.total_questions}</strong><br>
+        <em>${data.comparison}</em><br>
+        <strong>Agent Response:</strong> ${data.answer} <br>
+        <strong>Reasoning:</strong> ${data.agent_reasoning}
+      </div>
+    `;
+
+    responseList.innerHTML += responseHTML;
+  }
+
+  const modeSelect = document.getElementById("mode");
+  const agentSelector = document.getElementById("agentSelector");
+  const surveyFileInput = document.getElementById("surveyFileInput");
+
+  modeSelect.addEventListener("change", () => {
+    const mode = modeSelect.value;
+    agentSelector.classList.toggle("hidden", mode !== "agent");
+    surveyFileInput.classList.toggle("hidden", mode !== "single");
+  });
+
+  document.getElementById("runAnalysis").addEventListener("click", function () {
+    const mode = document.getElementById("mode").value;
+    const agent_mode = document.getElementById("agent_mode")?.value;
+    const survey_file = document.getElementById("survey_file").value;
+
+    const payload = { mode };
+    if (mode === "agent") payload.agent = agent_mode;
+    if (mode === "single") payload.survey_file = survey_file;
+
+    fetch("/run_ahp", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.error) {
+          alert("Error: " + data.error);
+          document.getElementById("ahpGraph").style.display = "none";
+          document.getElementById("ahpSummary").classList.add("hidden");
+        } else {
+          // Show CI and CR only
+          document.getElementById("consistencyIndex").textContent = data.consistency_index;
+          document.getElementById("consistencyRatio").textContent = data.consistency_ratio;
+          document.getElementById("ahpSummary").classList.remove("hidden");
+
+          fetch("/plot_ahp", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ priority_vector: data.priority_vector, factors: data.factors })
+          })
+            .then((response) => response.blob())
+            .then((blob) => {
+              const imgUrl = URL.createObjectURL(blob);
+              const img = document.getElementById("ahpGraph");
+              img.src = imgUrl;
+              img.style.display = "block";
+            });
+        }
+      });
+  });
+</script>
+
+</body>
+
+<script>
+  const toggleBtn = document.getElementById("themeToggle");
+
+  toggleBtn.addEventListener("click", () => {
+    document.body.classList.toggle("light");
+
+    // Optionally store theme in localStorage
+    const isLight = document.body.classList.contains("light");
+    localStorage.setItem("theme", isLight ? "light" : "dark");
+  });
+
+  // Load saved theme on page load
+  window.addEventListener("DOMContentLoaded", () => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "light") {
+      document.body.classList.add("light");
+    }
+  });
+</script>
+
+</html>

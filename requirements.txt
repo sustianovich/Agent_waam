@@ -1,0 +1,12 @@
+Flask
+Flask-SQLAlchemy
+Flask-Migrate
+Flask-WTF
+Flask-Login
+python-dotenv
+numpy
+matplotlib
+sqlalchemy
+langchain_ollama
+langchain
+langchain-community
