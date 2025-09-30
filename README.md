@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+# Agent_waam
+An agent that respond choosing a personalty to a survey
+
+>>>>>>> 9ac5c8abb14691263e8a3506714010679401b040
 # My Flask App
 
 ## Setup
@@ -17,5 +23,8 @@ source venv/bin/activate  # On Windows use `venv/Scripts/activate`
 4. cp .env.example .env
 
 5. flask run
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 9ac5c8abb14691263e8a3506714010679401b040
