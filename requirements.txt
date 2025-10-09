@@ -5,10 +5,13 @@ langgraph-checkpoint-sqlite
 langsmith
 langchain-community
 langchain-core
-langchain-openai
-notebook
 tavily-python
 wikipedia
 python-dotenv
 chromadb
 pandas
+langchain_ollama 
+duckduckgo-search
+ddgs
+matplotlib
+flask
