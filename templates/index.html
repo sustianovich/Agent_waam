@@ -89,6 +89,35 @@ body {
   border-radius: 5px;
 }
 
+.response-output {
+  max-height: 60vh;
+  overflow: auto;
+  padding-right: 8px;
+}
+
+.response-box {
+  word-break: break-word;
+  overflow-wrap: anywhere;
+}
+
+.response-text {
+  display: block;
+  max-height: 200px;
+  overflow-y: auto;
+  padding-right: 4px;
+  margin-top: 4px;
+  white-space: pre-wrap;
+}
+
+.response-text::-webkit-scrollbar {
+  width: 6px;
+}
+
+.response-text::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 3px;
+}
+
 #consistencyIndex,
 #consistencyRatio {
   color: #ffffff;
@@ -128,6 +157,14 @@ body.light .response-box,
 body.light .ahp-summary {
   background-color: #f1f1f1;
   color: #212529;
+}
+
+body.light .response-output {
+  background-color: transparent;
+}
+
+body.light .response-text::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 body.light .progress-container {
@@ -192,8 +229,8 @@ body.light #consistencyRatio {
       <div class="col-md-6">
         <div class="card h-100">
           <div class="card-header bg-primary text-white"><strong>🧠 Agent Responses</strong></div>
-          <div class="card-body overflow-auto" style="max-height: 500px;">
-            <div id="response-list"></div>
+          <div class="card-body">
+            <div id="response-list" class="response-output"></div>
           </div>
         </div>
       </div>
@@ -360,16 +397,47 @@ body.light #consistencyRatio {
     const comparison = data.comparison || "Unknown comparison";
     const sectionTitle = data.section_title ? `[${data.section_title}] ` : "";
 
-    const responseHTML = `
-      <div class="response-box">
-        <strong>Run ${runLabel} - Question ${questionNumber}/${totalQuestions}</strong><br>
-        <em>${sectionTitle}${comparison}</em><br>
-        <strong>Agent Response:</strong> ${answer} <br>
-        <strong>Reasoning:</strong> ${reasoning}
-      </div>
-    `;
+    const responseBox = document.createElement("div");
+    responseBox.className = "response-box";
 
-    responseList.innerHTML += responseHTML;
+    const header = document.createElement("strong");
+    header.textContent = `Run ${runLabel} - Question ${questionNumber}/${totalQuestions}`;
+    responseBox.appendChild(header);
+    responseBox.appendChild(document.createElement("br"));
+
+    const comparisonEl = document.createElement("em");
+    comparisonEl.textContent = `${sectionTitle}${comparison}`;
+    responseBox.appendChild(comparisonEl);
+    responseBox.appendChild(document.createElement("br"));
+
+    const answerLabel = document.createElement("strong");
+    answerLabel.textContent = "Agent Response:";
+    responseBox.appendChild(answerLabel);
+    responseBox.appendChild(document.createTextNode(" "));
+
+    const answerValue = document.createElement("span");
+    answerValue.textContent = answer;
+    responseBox.appendChild(answerValue);
+    responseBox.appendChild(document.createElement("br"));
+
+    const reasoningLabel = document.createElement("strong");
+    reasoningLabel.textContent = "Reasoning:";
+    responseBox.appendChild(reasoningLabel);
+    responseBox.appendChild(document.createTextNode(" "));
+
+    const reasoningValue = document.createElement("span");
+    reasoningValue.className = "response-text";
+    reasoningValue.textContent = reasoning;
+    responseBox.appendChild(reasoningValue);
+
+    const isNearBottom =
+      responseList.scrollHeight - responseList.scrollTop <= responseList.clientHeight + 5;
+
+    responseList.appendChild(responseBox);
+
+    if (isNearBottom) {
+      responseList.scrollTop = responseList.scrollHeight;
+    }
   }
 
   const modeSelect = document.getElementById("mode");
