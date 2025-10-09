@@ -19,8 +19,14 @@
             "comparisons": [
                 {"factor_1": "Machine Price", "factor_2": "Manufacturing Cost"},
                 {"factor_1": "Machine Price", "factor_2": "Productivity"},
-                {"factor_1": "Machine Price", "factor_2": "Reliability"}
-
+                {"factor_1": "Machine Price", "factor_2": "Reliability"},
+                {"factor_1": "Machine Price", "factor_2": "Surface Finish After Printing"},
+                {"factor_1": "Manufacturing Cost", "factor_2": "Productivity"},
+                {"factor_1": "Manufacturing Cost", "factor_2": "Reliability"},
+                {"factor_1": "Manufacturing Cost", "factor_2": "Surface Finish After Printing"},
+                {"factor_1": "Productivity", "factor_2": "Reliability"},
+                {"factor_1": "Productivity", "factor_2": "Surface Finish After Printing"},
+                {"factor_1": "Reliability", "factor_2": "Surface Finish After Printing"}
             ]
         },
         {
@@ -31,9 +37,103 @@
             "comparisons": [
                 {"factor_1": "Final Mechanical Properties", "factor_2": "Post Processing Complexity"},
                 {"factor_1": "Final Mechanical Properties", "factor_2": "Process Sustainability"},
-                {"factor_1": "Final Mechanical Properties", "factor_2": "User Preferences"}
+                {"factor_1": "Final Mechanical Properties", "factor_2": "User Preferences"},
+                {"factor_1": "Post Processing Complexity", "factor_2": "Process Sustainability"},
+                {"factor_1": "Post Processing Complexity", "factor_2": "User Preferences"},
+                {"factor_1": "Process Sustainability", "factor_2": "User Preferences"}
             ]
-        }
-        
+        },
+        {
+            "section": 5,
+            "title": "Criteria versus Alternatives",
+            "main_question": "Considering RELIABILITY, which of the following technologies do you consider more suitable? Where 1 means totally favorable to the first technology, and 9 means totally favorable to the second one.Regarding surface finish after printing, which of the following technologies do you consider more suitable?",
+            "instructions": "Defining Reliability as: The ability to manufacture additive parts without the occurrence of defects or downtime associated with failures.",
+            "comparisons": [
+                {"factor_1": "PBF", "factor_2": "DED (LMD)"},
+                {"factor_1": "PBF", "factor_2": "DED (EBAM)"},
+                {"factor_1": "PBF", "factor_2": "DED (WAAM)"},
+                {"factor_1": "PBF", "factor_2": "ME"},
+                {"factor_1": "DED (LMD)", "factor_2": "DED (EBAM)"},
+                {"factor_1": "DED (LMD)", "factor_2": "DED (WAAM)"},
+                {"factor_1": "DED (LMD)", "factor_2": "ME"},
+                {"factor_1": "DED (EBAM)", "factor_2": "DED (WAAM)"},
+                {"factor_1": "DED (EBAM)", "factor_2": "ME"},
+                {"factor_1": "DED (WAAM)", "factor_2": "ME"}
+            ]
+        },
+        {
+            "section": 6,
+            "title": "Criteria versus Alternatives",
+            "main_question": "Considering the SURFACE FINISH after printing, which of the following technologies do you consider most suitable?",
+            "instructions": "Defining Surface Finish after printing as: The degree of finish (waviness plus roughness) that parts exhibit after the completion of the raw printed piece. Where 1 means totally favorable to the first technology, and 9 means totally favorable to the second one. PBF (Powder Bed Fusion) – It melts metal powder using a laser inside a powder bed. ME (Material Extrusion) – It pushes material through a nozzle, similar to plastic 3D printers. DED (Direct Energy Deposition) – It adds metal while heating it at the same time. DED has three versions: LMD: Laser-based deposition, EBAM: Electron beam-based deposition, WAAM: Electric arc with wire-based deposition." ,
+            "comparisons": [
+                {"factor_1": "PBF", "factor_2": "DED (LMD)"},
+                {"factor_1": "PBF", "factor_2": "DED (EBAM)"},
+                {"factor_1": "PBF", "factor_2": "DED (WAAM)"},
+                {"factor_1": "PBF", "factor_2": "ME"},
+                {"factor_1": "DED (LMD)", "factor_2": "DED (EBAM)"},
+                {"factor_1": "DED (LMD)", "factor_2": "DED (WAAM)"},
+                {"factor_1": "DED (LMD)", "factor_2": "ME"},
+                {"factor_1": "DED (EBAM)", "factor_2": "DED (WAAM)"},
+                {"factor_1": "DED (EBAM)", "factor_2": "ME"},
+                {"factor_1": "DED (WAAM)", "factor_2": "ME"}
+            ]
+        },
+        {
+            "section": 7,
+            "title": "Criteria versus Alternatives",
+            "description": "Considering the COMPLEXITY OF POST-PROCESSING, which of the following technologies do you consider most suitable?",
+            "instructions": "Defining Post-Processing Complexity as: The estimated number, complexity, and cost of the post-processing operations required to complete the fabrication of the target part. Where 1 means totally favorable to the first technology, and 9 means totally favorable to the second one. PBF (Powder Bed Fusion) – It melts metal powder using a laser inside a powder bed. ME (Material Extrusion) – It pushes material through a nozzle, similar to plastic 3D printers. DED (Direct Energy Deposition) – It adds metal while heating it at the same time. DED has three versions: LMD: Laser-based deposition, EBAM: Electron beam-based deposition, WAAM: Electric arc with wire-based deposition.",
+            "comparisons": [
+                {"factor_1": "PBF", "factor_2": "DED (LMD)"},
+                {"factor_1": "PBF", "factor_2": "DED (EBAM)"},
+                {"factor_1": "PBF", "factor_2": "DED (WAAM)"},
+                {"factor_1": "PBF", "factor_2": "ME"},
+                {"factor_1": "DED (LMD)", "factor_2": "DED (EBAM)"},
+                {"factor_1": "DED (LMD)", "factor_2": "DED (WAAM)"},
+                {"factor_1": "DED (LMD)", "factor_2": "ME"},
+                {"factor_1": "DED (EBAM)", "factor_2": "DED (WAAM)"},
+                {"factor_1": "DED (EBAM)", "factor_2": "ME"},
+                {"factor_1": "DED (WAAM)", "factor_2": "ME"}
+                ]
+          },
+          {
+            "section": 8,
+            "title": "Criteria versus Alternatives",
+            "description": "Considering the SUSTAINABILITY OF THE PROCESS, which of the following technologies do you consider most suitable?",
+            "instructions": "Defining Process Sustainability as: The ecological impact of the process, taking into account consumption, recycling, and the efficiency of the material used. Where 1 means totally favorable to the first technology, and 9 means totally favorable to the second one. PBF (Powder Bed Fusion) – It melts metal powder using a laser inside a powder bed. ME (Material Extrusion) – It pushes material through a nozzle, similar to plastic 3D printers. DED (Direct Energy Deposition) – It adds metal while heating it at the same time. DED has three versions: LMD: Laser-based deposition, EBAM: Electron beam-based deposition, WAAM: Electric arc with wire-based deposition.",
+            "comparisons": [
+                {"factor_1": "PBF", "factor_2": "DED (LMD)"},
+                {"factor_1": "PBF", "factor_2": "DED (EBAM)"},
+                {"factor_1": "PBF", "factor_2": "DED (WAAM)"},
+                {"factor_1": "PBF", "factor_2": "ME"},
+                {"factor_1": "DED (LMD)", "factor_2": "DED (EBAM)"},
+                {"factor_1": "DED (LMD)", "factor_2": "DED (WAAM)"},
+                {"factor_1": "DED (LMD)", "factor_2": "ME"},
+                {"factor_1": "DED (EBAM)", "factor_2": "DED (WAAM)"},
+                {"factor_1": "DED (EBAM)", "factor_2": "ME"},
+                {"factor_1": "DED (WAAM)", "factor_2": "ME"}
+                ]
+
+          },
+          {
+            "section": 9,
+            "title": "Criteria versus Alternatives",
+            "description": "Considering USER PREFERENCES, which of the following technologies do you consider most suitable?",
+            "instructions": "Defining User Preferences as: Personal considerations including aspects such as ease of use of the equipment (both hardware and CNC), integration of sensors, and software tools (design, planning, cost, CAD/CAM/CAE, etc.). Where 1 means totally favorable to the first technology, and 9 means totally favorable to the second one. PBF (Powder Bed Fusion) – It melts metal powder using a laser inside a powder bed. ME (Material Extrusion) – It pushes material through a nozzle, similar to plastic 3D printers. DED (Direct Energy Deposition) – It adds metal while heating it at the same time. DED has three versions: LMD: Laser-based deposition, EBAM: Electron beam-based deposition, WAAM: Electric arc with wire-based deposition.",
+            "comparisons": [
+                {"factor_1": "PBF", "factor_2": "DED (LMD)"},
+                {"factor_1": "PBF", "factor_2": "DED (EBAM)"},
+                {"factor_1": "PBF", "factor_2": "DED (WAAM)"},
+                {"factor_1": "PBF", "factor_2": "ME"},
+                {"factor_1": "DED (LMD)", "factor_2": "DED (EBAM)"},
+                {"factor_1": "DED (LMD)", "factor_2": "DED (WAAM)"},
+                {"factor_1": "DED (LMD)", "factor_2": "ME"},
+                {"factor_1": "DED (EBAM)", "factor_2": "DED (WAAM)"},
+                {"factor_1": "DED (EBAM)", "factor_2": "ME"},
+                {"factor_1": "DED (WAAM)", "factor_2": "ME"}
+                ]
+
+          }
     ]
 }
