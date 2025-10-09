@@ -1,5 +1,7 @@
 # `waam_pipeline.py` Execution Flow
 
+This document summarizes the inputs, processing steps, and outputs that occur when `waam_pipeline.py` runs as a standalone script (`python waam_pipeline.py [AGENT_NAME]`).
+
 ---
 
 ## 1. Initialization
@@ -28,7 +30,9 @@ For each comparison record (fields include `section`, `title`, `instructions`, `
 
 1. **Assemble instructions**:
    - Prefixes instructions with `Section: <title>` when a section title exists.
-2. **Generate AI response**: Calls
+2. **Generate AI response**:
+
+   a. **Call signature**
    ```python
    generate_ai_response(
        agent_name,
@@ -40,6 +44,15 @@ For each comparison record (fields include `section`, `title`, `instructions`, `
        use_memory=True,
    )
    ```
+
+   b. **Steps inside `generate_ai_response`**
+   - **Agent profile lookup**: Pulls metadata (description, style, priorities) from `AGENT_PROFILES`; falls back to `"WAAM Expert"`.
+   - **Context enrichment**:
+     1. `search(...)` builds a query from the main question, instructions, and both factors (via `build_explain_question`). It runs the DuckDuckGo tool (`DuckDuckGoSearchRun.invoke`) and converts the result to plain text using `ddg_to_text`. The text is trimmed to `_MAX_CHARS` and returned, or `""` if the query or lookup fails.
+     2. If search text is available, `explain(...)` formats `PROMPT_TEMPLATE` with the agent profile, question, and search context, then calls `llm.invoke` (Ollama/`llama3`). The LLM response is stripped and treated as supplemental rationale. This rationale is appended to the instructions under “Supplementary context”.
+   - **Agent construction**: Uses `get_agent(agent_name, profile, llm, use_memory=use_memory)` to obtain an evaluator capable of scoring the comparison.
+   - **Memory reset**: Invokes `agent.reset_memory()` when `question_index == 0` or `use_memory` is `False`.
+   - **Evaluation**: Calls `agent.evaluate(factor_1, factor_2, main_question, supplemental_instructions)` and returns the resulting dict (keys include `answer`, `agent_reasoning`, and any agent-specific fields).
    Returns a dict containing at least `answer` and `agent_reasoning`.
 3. **Collect for AHP**: Appends a record with section/title/agent/comparison and the numeric answer.
 4. **Console log**: Prints a line such as  
@@ -69,3 +82,22 @@ Steps:
 2. **Script termination**: No explicit return; all outputs are console text plus the generated plot image.
 
 ---
+
+## Inputs & Outputs Overview
+| Stage | Inputs | Outputs |
+|-------|--------|---------|
+| Initialization | `.env`, agent profiles, config constants | LLM + search tool instances |
+| Survey loading | Survey JSON (`00_google_form.json`) | `survey_title`, comparisons list |
+| Generate response | Factors, main question, instructions, agent profile | Dict with `answer`, `agent_reasoning`, etc. |
+| AHP accumulation | Response dicts | List of formatted records |
+| Analysis | Records list | Console summary + saved plot (`analysis["plot_path"]`) |
+
+---
+
+### Command-Line Usage
+```bash
+python waam_pipeline.py            # uses DEFAULT_AGENT
+python waam_pipeline.py "Agent X"  # runs with the specified agent profile
+```
+
+Outputs appear in the terminal and, if analysis succeeds, a plot image file is generated at the path reported in the console.
